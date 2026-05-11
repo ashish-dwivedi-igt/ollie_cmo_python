@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CMO Chat</title>
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+	<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+	<div class="app-container">
+		<header class="top-bar">
+			<div class="top-bar-left">
+				<span class="brand">Ollie CMO</span>
+			</div>
+			<div class="top-bar-right">
+				<button id="new-chat-button" class="btn-secondary">New Chat</button>
+				<div class="status-indicator" id="status-indicator" title="Backend Status">
+					<span class="status-dot"></span>
+				</div>
+			</div>
+		</header>
+
+		<main class="chat-container">
+			<div id="messages" class="messages" aria-live="polite"></div>
+
+			<div class="composer-container">
+				<form id="chat-form" class="composer">
+					<label class="sr-only" for="question">Your message</label>
+					<textarea id="question" name="question" rows="1" placeholder="Ask about ads, creatives, or performance insights..."></textarea>
+					<button id="send-button" type="submit">Send</button>
+				</form>
+			</div>
+		</main>
+	</div>
+
+	<script src="/static/index.js"></script>
+</body>
+</html>

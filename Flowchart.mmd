@@ -1,0 +1,25 @@
+flowchart TD
+    User([User]) -->|Sends Message| PM(process_message)
+    
+    subgraph Orchestrator [Orchestrator]
+        PM --> DI(detect_intent API)
+        DI --> C{Intent?}
+        C -->|Specific Intent| RQ(rewrite_query API)
+        C -->|General Chat| MU[Save User Msg to memory_manager]
+        RQ --> MU
+        MU --> FC(format_chat_history)
+        FC --> CallAgent(Call ask_agent)
+        
+        Synth(synthesize_response API) --> MA[Save Assistant Msg to memory_manager]
+    end
+    
+    subgraph MetaAgent [Meta Creative Agent]
+        CallAgent -->|Search Query & Session ID| AgentProcess(Agent LangGraph)
+        AgentProcess <--> Tools{Agent Tools}
+        Tools <--> T1[list_ads_with_creatives]
+        Tools <--> T2[get_ad_performance_insights]
+        Tools <--> T3[search_ad_library]
+        AgentProcess -->|Raw Agent Output| Synth
+    end
+    
+    MA -->|Final Response| User
