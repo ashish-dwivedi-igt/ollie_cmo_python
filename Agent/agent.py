@@ -15,6 +15,9 @@ from langgraph.store.memory import InMemoryStore
 from Tools.meta.metaCreatives import (
     list_ads_with_creatives,
     get_ad_performance_insights,
+    fetch_filtered_insights,
+    list_campaigns,
+    list_adsets,
     search_ad_library,
 )
 
@@ -57,6 +60,9 @@ def build_agent(config: AgentConfig | None = None):
         tools=[
             list_ads_with_creatives,
             get_ad_performance_insights,
+            fetch_filtered_insights,
+            list_campaigns,
+            list_adsets,
             search_ad_library,
         ],
         system_prompt=agent_config.system_prompt,
